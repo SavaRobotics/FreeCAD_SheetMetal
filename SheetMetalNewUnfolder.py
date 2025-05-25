@@ -33,7 +33,7 @@ import FreeCAD
 import Part
 import SheetMetalTools
 from FreeCAD import Matrix, Placement, Rotation, Vector
-from TechDraw import projectEx as project_shape_to_plane
+# from TechDraw import projectEx as project_shape_to_plane
 
 try:
     import networkx as nx
@@ -609,7 +609,7 @@ class SketchExtraction:
         a 3D shape onto a particular 2D plane."""
         # this is a slow but robust method of sketch profile extraction
         # ref: https://github.com/FreeCAD/FreeCAD/blob/main/src/Mod/Draft/draftobjects/shape2dview.py
-        raw_output = project_shape_to_plane(solid, direction)
+        raw_output = TechDraw.projectEx(solid, direction)
         edges = [group for group in raw_output[:5] if not group.isNull()]
         compound = Part.makeCompound(edges)
         return compound
